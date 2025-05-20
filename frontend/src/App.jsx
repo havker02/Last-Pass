@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Vault from "./pages/Vault.jsx";
 import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";
@@ -20,6 +20,7 @@ export default function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/credentials/create" element={<CreateCredentials />} />
         <Route path="/account" element={<Account />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <Toaster
   position="top-center"
