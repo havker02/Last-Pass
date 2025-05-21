@@ -36,7 +36,7 @@ const formAction = `${baseUrl}/api/v1/user/register`;
         password: ""
       })
     } catch (error) {
-      toast.error(error?.response?.data?.message)
+      toast.error(error.message)
     }
   }
 
