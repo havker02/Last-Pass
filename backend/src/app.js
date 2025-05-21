@@ -15,6 +15,10 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static("public"))
 app.use(cookieParser())
 
+app.use("/dev", (_, res)=> {
+  return res.send("Backend is running...")
+})
+
 app.use("/api/v1/user", userRouter)
 app.use("/api/v1/vault", vaultRouter)
 
