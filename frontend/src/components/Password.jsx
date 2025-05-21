@@ -33,7 +33,7 @@ const Password = () => {
         toast.success("Password changed successfully");
       }
     } catch (error) {
-      toast.error(error?.response?.data?.message);
+      toast.error(error.message);
     }
   };
 

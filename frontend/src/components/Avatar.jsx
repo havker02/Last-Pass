@@ -39,7 +39,7 @@ const Avatar = () => {
         return toast.success("Avatar uploaded successfully"); 
       }
     } catch (error) {
-      return toast.error(error?.response?.data?.message);
+      return toast.error(error.message);
     }
   };
 
