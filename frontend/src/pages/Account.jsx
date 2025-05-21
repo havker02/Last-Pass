@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Avatar from "../components/Avatar"
 import Password from "../components/Password"
+import Loading from "../components/Loading"
 import { toast } from "react-hot-toast";
 import { TbLogout } from "react-icons/tb";
 import { GiReturnArrow } from "react-icons/gi";
@@ -57,7 +58,7 @@ const Account = () => {
     checkAuth();
   }, []);
 
-  if (isLoading) return null;
+  if (isLoading) return <Loading/>
 
   return (
     <div className="h-screen w-full px-4 mt-2">

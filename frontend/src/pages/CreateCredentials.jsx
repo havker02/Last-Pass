@@ -6,8 +6,8 @@ import { GiReturnArrow } from "react-icons/gi";
 
 const CreateCredentials = () => {
   const navigate = useNavigate();
+  
   const baseUrl = import.meta.env.VITE_BACKEND_URL;
-  const [user, setUser] = useState({})
 
   const [formData, setFormData] = useState({
     url: "",

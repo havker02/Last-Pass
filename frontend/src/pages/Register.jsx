@@ -1,70 +1,74 @@
-import {useState, useEffect} from "react";
-import {Link, useNavigate} from "react-router-dom";
-import axios from "axios"
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { toast } from "react-hot-toast";
+import Loading from "../components/Loading";
 
 const Signup = () => {
   const baseUrl = import.meta.env.VITE_BACKEND_URL;
-const formAction = `${baseUrl}/api/v1/user/register`;
+  const formAction = `${baseUrl}/api/v1/user/register`;
 
   const navigate = useNavigate();
 
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState({});
 
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
 
   const [formData, setFormData] = useState({
     userName: "",
     email: "",
-    password: ""
-  })
+    password: "",
+  });
 
   const handleChange = (e) => {
-    setFormData({...formData, [e.target.name]: e.target.value})
-  }
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(formAction, formData)
+      const response = await axios.post(formAction, formData);
       if (response.data.success) {
-        setUser(response.data.user)
+        setUser(response.data.user);
       }
       setFormData({
         userName: "",
         email: "",
-        password: ""
-      })
+        password: "",
+      });
     } catch (error) {
-      toast.error(error.message)
+      toast.error(error.message);
     }
-  }
+  };
 
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await axios.get(`${baseUrl}/api/v1/user/current-user`, {
-          withCredentials: true
-        })
-  if(response.status === 200 && response.data?.user) {
-          navigate("/")
+        const response = await axios.get(
+          `${baseUrl}/api/v1/user/current-user`,
+          {
+            withCredentials: true,
+          },
+        );
+        if (response.status === 200 && response.data?.user) {
+          navigate("/");
         }
       } catch (error) {
-        setIsLoading(false)
+        setIsLoading(false);
       }
-    }
-    checkAuth()
-  }, [user])
+    };
+    checkAuth();
+  }, [user]);
 
-  
-
-  if (isLoading) return null
+  if (isLoading) return <Loading />
 
   return (
     <div className="h-screen w-full px-4 py-8">
       <h1 className="mt-6 text-2xl text-center mb-8">Create new account</h1>
-      <form onSubmit={(e)=> handleSubmit(e)}
-        className="max-w-sm mx-auto shadow-md shadow-zinc-400 bg-slate-200 p-8 rounded-lg">
+      <form
+        onSubmit={(e) => handleSubmit(e)}
+        className="max-w-sm mx-auto shadow-md shadow-zinc-400 bg-slate-200 p-8 rounded-lg"
+      >
         <div className="mb-5">
           <label
             htmlFor="userName"
@@ -76,8 +80,8 @@ const formAction = `${baseUrl}/api/v1/user/register`;
             type="text"
             id="userName"
             name="userName"
-            value= {formData.userName}
-            onChange= {(e)=> handleChange(e)}
+            value={formData.userName}
+            onChange={(e) => handleChange(e)}
             placeholder="Enter username..."
             className="outline-none shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light placeholder:text-slate-400"
             required
@@ -94,8 +98,8 @@ const formAction = `${baseUrl}/api/v1/user/register`;
             type="email"
             id="email"
             name="email"
-            value= {formData.email}
-            onChange= {(e)=> handleChange(e)}
+            value={formData.email}
+            onChange={(e) => handleChange(e)}
             placeholder="name@example.com"
             className="outline-none shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light placeholder:text-slate-400"
             required
@@ -112,8 +116,8 @@ const formAction = `${baseUrl}/api/v1/user/register`;
             type="password"
             id="password"
             name="password"
-            value= {formData.password}
-            onChange= {(e)=> handleChange(e)}
+            value={formData.password}
+            onChange={(e) => handleChange(e)}
             placeholder="Enter password..."
             className="outline-none shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light placeholder:text-slate-400"
             required
@@ -143,7 +147,12 @@ const formAction = `${baseUrl}/api/v1/user/register`;
           </label>
         </div>
         <div className="text-center mb-4">
-          <p>Already have an account? <Link to="/login" className="text-blue-600">Login</Link></p>
+          <p>
+            Already have an account?{" "}
+            <Link to="/login" className="text-blue-600">
+              Login
+            </Link>
+          </p>
         </div>
         <button
           type="submit"

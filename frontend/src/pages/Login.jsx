@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import Loading from "../components/Loading"
 
 const Login = () => {
   const baseUrl = import.meta.env.VITE_BACKEND_URL;
@@ -57,8 +58,8 @@ const Login = () => {
     }
   };
 
-  if (isLoading) return null
-
+if (isLoading) return <Loading />
+  
   return (
     <div className="h-screen w-full px-4">
       <h1 className="mt-16 text-2xl text-center">Login your account</h1>

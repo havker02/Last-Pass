@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Credentials from "../components/Credentials"
 import { toast } from "react-hot-toast";
+import Loading from "../components/Loading"
 import { IoMdLock } from "react-icons/io";
 import { FaPlus } from "react-icons/fa";
 
@@ -48,7 +49,7 @@ const Vault = () => {
     checkAuth()
   }, [])
 
-  if (isLoading) return null;
+  if (isLoading) return <Loading/>
 
   return (
     <div>
