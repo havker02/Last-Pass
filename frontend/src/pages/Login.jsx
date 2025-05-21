@@ -24,6 +24,7 @@ const Login = () => {
         })
         if (response.status === 200 && response.data?.user) {
           navigate("/")
+          localStorage.setItem(accessToken, response?.data?.accessToken)
         }
       } catch (error) {
         setIsLoading(false)
@@ -48,9 +49,11 @@ const Login = () => {
       });
       if (response.data.success) {
         navigate("/");
+      } else {
+        return toast.error(response?.data?.message)
       }
     } catch (error) {
-      toast.error(error.message);
+      return toast.error(error.message);
     }
   };
 

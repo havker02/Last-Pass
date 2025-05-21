@@ -18,13 +18,14 @@ const Vault = () => {
 
   const handleDelete = async (id) => {
     try {
-      axios.delete(`${baseUrl}/api/v1/vault/${id}`, {
+      await axios.delete(`${baseUrl}/api/v1/vault/${id}`, {
         withCredentials: true
       })
-      axios.delete(`${baseUrl}/api/v1/user/${id}`, {
+      await axios.delete(`${baseUrl}/api/v1/user/${id}`, {
         withCredentials: true
       })
       setCredentials(credentials.filter(prev => prev._id !== id))
+      toast.success("Deleted successfully")
     } catch (error) {
       toast.error(error.message)
     }
@@ -36,9 +37,9 @@ const Vault = () => {
         const response = await axios.get(`${baseUrl}/api/v1/user/current-user`, {
           withCredentials: true
         })
-        setIsLoading(false)
         setUser(response?.data?.user)
         setCredentials(response?.data?.user?.vault)
+        setIsLoading(false)
       } catch (error) {
         setIsLoading(false)
         navigate("/login")
