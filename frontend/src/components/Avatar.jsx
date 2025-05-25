@@ -103,7 +103,7 @@ const Avatar = () => {
       <button
         type="submit"
         disabled={submitting}
-        className="mt-2 flex justify-center items-center gap-4 text-white text-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 outline-none font-medium rounded-lg text-sm px-4 font-bold py-3 text-center hover:bg-blue-700 disabled:bg-blue-500"
+        className="mt-2 flex justify-center cursor-pointer items-center gap-4 text-white text-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 outline-none font-medium rounded-lg text-sm px-4 font-bold py-3 text-center hover:bg-blue-700 disabled:bg-blue-500"
       >
         {submitting ? "Uploading..." : "Upload Avatar"}
       </button>

@@ -63,7 +63,7 @@ const Account = () => {
   return (
     <div className="h-screen w-full px-4 mt-2">
       
-<Link to="/" className="flex items-center text-lg gap-2 cursor-pointer w-1/4">
+<Link to="/" className="flex items-center cursor-pointer text-lg gap-2 cursor-pointer w-1/4">
   <GiReturnArrow /> Home
 </Link>
       
@@ -82,7 +82,7 @@ const Account = () => {
       
       <button
         onClick={logoutUser}
-        className="gap-4 flex text-lg justify-center items-center text-white bg-red-700 hover:bg-red-800 focus:ring-4 outline-none font-medium rounded-full text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+        className="gap-4 flex text-lg justify-center cursor-pointer items-center text-white bg-red-700 hover:bg-red-800 focus:ring-4 outline-none font-medium rounded-full text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
       >
         <TbLogout style={{ color: "zinc", fontSize: "1.5rem" }} /> Logout
       </button>

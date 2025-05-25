@@ -23,7 +23,7 @@ const Credentials = ({credentials, onDelete}) => {
               </div>
 <div className="mb-4">
   <button onClick={()=> onDelete(credential._id)}
-    className="bg-red-500 text-white px-2 py-1 rounded-md">Delete</button>
+    className="bg-red-500 text-white px-2 py-1 cursor-pointer rounded-md">Delete</button>
 </div>
               <hr />
             </div>

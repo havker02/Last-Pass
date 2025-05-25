@@ -11,6 +11,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -44,17 +45,22 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitting(true);
     try {
       const response = await axios.post(formAction, formData, {
         withCredentials: true,
       });
+      
       if (response.data.success) {
+        setSubmitting(false);
         navigate("/");
       } else {
-        return toast.error(response?.data?.message)
+        setSubmitting(false);
+        toast.error(error.response?.data?.message)
       }
     } catch (error) {
-      return toast.error(error.message);
+      setSubmitting(false);
+      toast.error(error.response?.data?.message);
     }
   };
 
@@ -106,12 +112,15 @@ if (isLoading) return <Loading />
             Don't have an account? <Link to="/register" className="text-blue-600">Register</Link>
           </p>
         </div>
+        
         <button
           type="submit"
-          className="mt-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          disabled={submitting}
+          className="mt-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 cursor-pointer focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 disabled:bg-blue-400"
         >
           Login
         </button>
+        
       </form>
     </div>
   );

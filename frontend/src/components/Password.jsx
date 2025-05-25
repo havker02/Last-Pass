@@ -5,6 +5,7 @@ import { toast } from "react-hot-toast";
 const Password = () => {
   const baseUrl = import.meta.env.VITE_BACKEND_URL;
   
+  const [updating, setUpdating] = useState(false);
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
 
@@ -18,6 +19,7 @@ const Password = () => {
 
   const changePassword = async (e) => {
     e.preventDefault();
+    setUpdating(true);
     try {
       const response = await axios.post(
         `${baseUrl}/api/v1/user/change-password`,
@@ -29,11 +31,15 @@ const Password = () => {
           withCredentials: true,
         },
       );
+      
       if (response.status === 200) {
+        setUpdating(false);
         toast.success("Password changed successfully");
       }
     } catch (error) {
-      toast.error(error.message);
+      setUpdating(false);
+      toast.error(error.response.data.message)
+      console.log(error.message)
     }
   };
 
@@ -60,7 +66,7 @@ const Password = () => {
           <input
             type="password"
             name="newPassword"
-            className="my-4 outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder:text-slate-400"
+            className="my-4 outline-none bg-gray-50 cursor-pointer border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder:text-slate-400"
             placeholder="New password"
             required
             value={newPassword}
@@ -69,9 +75,10 @@ const Password = () => {
         </div>
         <button
           type="submit"
+          disabled={updating}
           className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 outline-none rounded-lg text-md sm:w-auto px-4 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
-          Update password
+          {updating ? "Updating..." : "Update password"}
         </button>
       </form>
     )

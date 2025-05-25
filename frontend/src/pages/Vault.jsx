@@ -79,7 +79,7 @@ const Vault = () => {
         <IoMdLock size={20} />
         Passwords ({credentials.length})
       </h4>
-        <Link to="/credentials/create" className="flex items-center gap-2 bg-[#D32D27] px-3 text-sm py-2 rounded-lg text-white">
+        <Link to="/credentials/create" className="flex items-center gap-2 bg-[#D32D27] px-3 text-sm py-2 rounded-lg cursor-pointer text-white">
           <FaPlus /> New
         </Link>
       </div>

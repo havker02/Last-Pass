@@ -11,7 +11,7 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const [user, setUser] = useState({});
-
+  const [submitting, setSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   const [formData, setFormData] = useState({
@@ -36,8 +36,12 @@ const Signup = () => {
         email: "",
         password: "",
       });
+      toast.success("Account created successfully")
+      setSubmitting(false)
+      navigate("/login")
     } catch (error) {
-      toast.error(error.message);
+      setSubmitting(false)
+      toast.error(error.response?.data?.message);
     }
   };
 
@@ -156,7 +160,7 @@ const Signup = () => {
         </div>
         <button
           type="submit"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="text-white bg-blue-700 cursor-pointer hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
           Register new account
         </button>
