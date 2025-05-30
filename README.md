@@ -7,8 +7,10 @@ This app makes it easy to securely store, manage, and retrieve your passwords wi
 # 🧑‍💻 Build With
 ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
 ![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+![React](https://img.shields.io/badge/React-blue?style=for-the-badge&logo=react&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Cloudinary](https://img.shields.io/badge/Cloudinary-3448C5?style=for-the-badge&logo=cloudinary&logoColor=white)
+![Axios](https://img.shields.io/badge/Axios-black?style=for-the-badge&logo=axios&logoColor=aqua)
 
 ## 🌟 Features at a Glance
 
